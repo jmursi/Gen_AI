@@ -3,854 +3,1027 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generative AI & ML in Finance, Healthcare & HR</title>
+    <title>AI for Executives - Comprehensive Training</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif; 
+            background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 50%, #db2777 100%); 
             overflow: hidden;
+            color: #1f2937;
         }
-
-        .presentation {
-            width: 100vw;
-            height: 100vh;
-            position: relative;
+        .presentation { width: 100vw; height: 100vh; position: relative; }
+        .slide { 
+            width: 100%; 
+            height: 100%; 
+            display: none; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 50px; 
+            background: white; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            animation: slideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-
-        .slide {
-            width: 100%;
-            height: 100%;
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 60px;
-            background: white;
-            position: absolute;
-            top: 0;
-            left: 0;
-            animation: slideIn 0.5s ease-out;
+        .slide.active { display: flex; }
+        @keyframes slideIn { 
+            from { opacity: 0; transform: translateX(100px) scale(0.95); } 
+            to { opacity: 1; transform: translateX(0) scale(1); } 
         }
-
-        .slide.active {
-            display: flex;
+        h1 { 
+            color: #1e3a8a; 
+            font-size: 3em; 
+            margin-bottom: 25px; 
+            text-align: center; 
+            font-weight: 800;
+            letter-spacing: -0.02em;
         }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        h2 { 
+            color: #7c3aed; 
+            font-size: 2.2em; 
+            margin-bottom: 20px; 
+            text-align: center; 
+            font-weight: 700;
         }
-
-        h1 {
-            color: #667eea;
-            font-size: 3em;
-            margin-bottom: 30px;
-            text-align: center;
+        h3 { 
+            color: #1e3a8a; 
+            font-size: 1.4em; 
+            margin-bottom: 15px; 
+            margin-top: 20px; 
+            font-weight: 600;
         }
-
-        h2 {
-            color: #764ba2;
-            font-size: 2.2em;
-            margin-bottom: 25px;
-            text-align: center;
+        .content { 
+            max-width: 1300px; 
+            width: 100%; 
+            height: 85%; 
+            overflow-y: auto; 
+            padding-right: 10px;
         }
-
-        h3 {
-            color: #667eea;
-            font-size: 1.8em;
-            margin-bottom: 20px;
-            margin-top: 25px;
+        .content::-webkit-scrollbar { width: 8px; }
+        .content::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 10px; }
+        .content::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #7c3aed, #db2777); border-radius: 10px; }
+        ul { list-style: none; padding-left: 0; }
+        li { 
+            margin: 12px 0; 
+            padding-left: 30px; 
+            position: relative; 
+            font-size: 1.05em; 
+            line-height: 1.7;
+            color: #374151;
         }
-
-        .content {
-            max-width: 1200px;
-            width: 100%;
-            height: 80%;
-            overflow-y: auto;
-        }
-
-        .content::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .content::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-
-        .content::-webkit-scrollbar-thumb {
-            background: #667eea;
-            border-radius: 10px;
-        }
-
-        ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        li {
-            margin: 15px 0;
-            padding-left: 30px;
-            position: relative;
+        li:before { 
+            content: "▸"; 
+            color: #7c3aed; 
+            font-weight: bold; 
+            position: absolute; 
+            left: 0; 
             font-size: 1.2em;
-            line-height: 1.6;
         }
-
-        li:before {
-            content: "▸";
-            color: #667eea;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
+        .two-column { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 30px; 
+            margin-top: 20px; 
         }
-
-        .two-column {
+        .three-column {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
             margin-top: 20px;
         }
-
-        .box {
-            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
-            padding: 25px;
-            border-radius: 15px;
-            border-left: 5px solid #667eea;
+        .box { 
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.08) 0%, rgba(219, 39, 119, 0.08) 100%); 
+            padding: 25px; 
+            border-radius: 12px; 
+            border-left: 5px solid #7c3aed; 
+            margin: 15px 0;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.2);
+        }
+        .box h3 { margin-top: 0; font-size: 1.3em; }
+        .demo-box { 
+            background: #f8fafc; 
+            border: 2px solid #e5e7eb; 
+            padding: 25px; 
+            border-radius: 12px; 
+            margin: 15px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .prompt { 
+            background: #1f2937; 
+            color: #f9fafb; 
+            padding: 18px; 
+            border-radius: 10px; 
+            font-family: 'Fira Code', 'Courier New', monospace; 
+            margin: 12px 0; 
+            font-size: 0.95em;
+            border-left: 4px solid #7c3aed;
+            line-height: 1.6;
+        }
+        .highlight { 
+            background: linear-gradient(120deg, #fef3c7 0%, #fde68a 100%); 
+            padding: 3px 8px; 
+            border-radius: 4px; 
+            font-weight: 700;
+            color: #92400e;
+        }
+        .stat {
+            background: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin: 15px 0;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .navigation { 
+            position: fixed; 
+            bottom: 30px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            display: flex; 
+            gap: 15px; 
+            z-index: 1000; 
+        }
+        button { 
+            padding: 14px 32px; 
+            font-size: 1em; 
+            border: none; 
+            background: linear-gradient(135deg, #7c3aed 0%, #db2777 100%); 
+            color: white; 
+            border-radius: 12px; 
+            cursor: pointer; 
+            transition: all 0.3s; 
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+            font-weight: 600;
+        }
+        button:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.5);
+        }
+        button:disabled { 
+            background: #d1d5db; 
+            cursor: not-allowed; 
+            transform: none;
+            box-shadow: none;
+        }
+        .slide-counter { 
+            position: fixed; 
+            top: 30px; 
+            right: 30px; 
+            background: rgba(255, 255, 255, 0.98); 
+            padding: 12px 24px; 
+            border-radius: 30px; 
+            font-weight: 700; 
+            color: #7c3aed; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            font-size: 1.1em;
+        }
+        .title-slide { 
+            background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 50%, #db2777 100%); 
+            color: white; 
+        }
+        .title-slide h1 { color: white; font-size: 3.5em; text-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        .subtitle { 
+            font-size: 1.5em; 
+            opacity: 0.95; 
+            text-align: center; 
+            font-weight: 400;
+        }
+        table { 
+            width: 100%; 
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 20px 0; 
+            font-size: 1em;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th, td { 
+            padding: 16px; 
+            text-align: left; 
+            border-bottom: 1px solid #e5e7eb; 
+        }
+        th { 
+            background: linear-gradient(135deg, #7c3aed, #db2777); 
+            color: white; 
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 0.05em;
+        }
+        tr:hover { background: #f9fafb; }
+        tr:last-child td { border-bottom: none; }
+        .step-number { 
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px; 
+            height: 40px; 
+            background: linear-gradient(135deg, #7c3aed, #db2777); 
+            color: white; 
+            border-radius: 50%; 
+            font-weight: 700; 
+            margin-right: 12px;
+            font-size: 1.1em;
+        }
+        .icon { font-size: 3.5em; margin-bottom: 20px; }
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #7c3aed, #db2777);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 5px;
+        }
+        .quote {
+            font-style: italic;
+            font-size: 1.15em;
+            color: #6b7280;
+            border-left: 4px solid #7c3aed;
+            padding-left: 20px;
             margin: 20px 0;
+            line-height: 1.8;
         }
-
-        .box h3 {
-            margin-top: 0;
-            font-size: 1.5em;
-        }
-
-        .demo-box {
-            background: #f8f9fa;
-            border: 2px dashed #667eea;
-            padding: 25px;
-            border-radius: 15px;
-            margin: 20px 0;
-        }
-
-        .prompt {
-            background: #2d3748;
-            color: #fff;
+        .key-point {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.1), rgba(124, 58, 237, 0.1));
             padding: 20px;
             border-radius: 10px;
-            font-family: 'Courier New', monospace;
             margin: 15px 0;
-            font-size: 1.1em;
+            border: 2px solid #e5e7eb;
         }
-
-        .highlight {
-            background: linear-gradient(120deg, #ffd70040 0%, #ffd70040 100%);
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-
-        .navigation {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 20px;
-            z-index: 1000;
-        }
-
-        button {
-            padding: 15px 30px;
-            font-size: 1.1em;
-            border: none;
-            background: #667eea;
-            color: white;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        button:hover {
-            background: #764ba2;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(118, 75, 162, 0.4);
-        }
-
-        button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .slide-counter {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-weight: bold;
-            color: #667eea;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .title-slide {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .title-slide h1 {
-            color: white;
-            font-size: 4em;
-        }
-
-        .subtitle {
-            font-size: 1.5em;
-            opacity: 0.9;
-            text-align: center;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 1.1em;
-        }
-
-        th, td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background: #667eea;
-            color: white;
-        }
-
-        tr:hover {
-            background: #f5f5f5;
-        }
-
-        .step-number {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: #667eea;
-            color: white;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 40px;
-            font-weight: bold;
-            margin-right: 15px;
-        }
-
-        .icon {
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .slide {
-                padding: 30px 20px;
-            }
-            h1 {
-                font-size: 2em;
-            }
-            h2 {
-                font-size: 1.5em;
-            }
-            .two-column {
-                grid-template-columns: 1fr;
-            }
+        @media (max-width: 768px) { 
+            .slide { padding: 20px 15px; } 
+            h1 { font-size: 1.8em; } 
+            h2 { font-size: 1.5em; } 
+            .two-column, .three-column { grid-template-columns: 1fr; }
+            .navigation { bottom: 15px; }
+            button { padding: 10px 20px; font-size: 0.9em; }
         }
     </style>
 </head>
 <body>
     <div class="presentation">
-        <div class="slide-counter">
-            <span id="current-slide">1</span> / <span id="total-slides">26</span>
-        </div>
+        <div class="slide-counter"><span id="current-slide">1</span> / <span id="total-slides">40</span></div>
 
         <!-- Slide 1: Title -->
         <div class="slide active title-slide">
             <div class="content">
-                <div class="icon">🤖</div>
-                <h1>Generative AI & Machine Learning</h1>
-                <p class="subtitle">Transforming Finance, Healthcare, HR & Communication</p>
-                <p class="subtitle" style="margin-top: 40px; font-size: 1.2em;">Interactive Training • Real-World Applications • Practical Demos</p>
-            </div>
-        </div>
-
-        <!-- Slide 2: What is Prompt Engineering? -->
-        <div class="slide">
-            <div class="content">
-                <h2>What is Prompt Engineering?</h2>
-                <div class="box">
-                    <h3>Definition</h3>
-                    <p style="font-size: 1.3em; line-height: 1.8;">Prompt engineering is the art and science of <span class="highlight">designing effective questions or commands</span> to get better, more accurate AI outputs across all business functions.</p>
-                </div>
-                <div class="two-column" style="margin-top: 30px;">
-                    <div class="box">
-                        <h3>Why It Matters</h3>
-                        <ul>
-                            <li>Dramatically <span class="highlight">boost productivity</span></li>
-                            <li>Improve accuracy of outputs</li>
-                            <li>Reduce AI errors</li>
-                            <li>Automate repetitive tasks</li>
-                            <li>Handle complex analysis faster</li>
-                        </ul>
-                    </div>
-                    <div class="box">
-                        <h3>Real Impact</h3>
-                        <ul>
-                            <li>Tasks that took <span class="highlight">hours → minutes</span></li>
-                            <li>Draft reports automatically</li>
-                            <li>Summarize lengthy documents</li>
-                            <li>Analyze massive datasets</li>
-                            <li>Extract insights instantly</li>
-                        </ul>
-                    </div>
+                <div class="icon">🚀</div>
+                <h1>AI for Executives</h1>
+                <p class="subtitle">Strategic Leadership in the Age of Generative AI</p>
+                <p class="subtitle" style="margin-top: 40px; font-size: 1.2em;">Transforming Finance | Healthcare | HR | Communication</p>
+                <div style="margin-top: 60px;">
+                    <span class="badge">2025 Edition</span>
+                    <span class="badge">Executive Level</span>
+                    <span class="badge">Practical Applications</span>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 3: Prompt Structure Framework -->
+        <!-- Slide 2: The AI Revolution -->
         <div class="slide">
             <div class="content">
-                <h2>Effective Prompt Structure</h2>
-                <div class="box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-                    <h3 style="color: white; font-size: 2em; text-align: center;">The Prompt Formula</h3>
-                    <p style="font-size: 1.5em; text-align: center; margin: 30px 0;">
-                        <span style="background: rgba(255,255,255,0.3); padding: 10px 20px; border-radius: 10px; margin: 5px;">CONTEXT</span> + 
-                        <span style="background: rgba(255,255,255,0.3); padding: 10px 20px; border-radius: 10px; margin: 5px;">TASK</span> + 
-                        <span style="background: rgba(255,255,255,0.3); padding: 10px 20px; border-radius: 10px; margin: 5px;">FORMAT</span> + 
-                        <span style="background: rgba(255,255,255,0.3); padding: 10px 20px; border-radius: 10px; margin: 5px;">CONSTRAINTS</span>
-                    </p>
+                <h2>The AI Revolution: Why Now?</h2>
+                <div class="stat">
+                    <span class="stat-number">92%</span>
+                    Fortune 500 companies investing in AI
                 </div>
-                <div class="demo-box" style="margin-top: 30px;">
-                    <h3>Example for Finance</h3>
-                    <div style="font-size: 1.2em; line-height: 2;">
-                        <p><strong>Context:</strong> "You are analyzing quarterly revenue data"</p>
-                        <p><strong>Task:</strong> "Identify revenue trends and variances"</p>
-                        <p><strong>Format:</strong> "Present in a table with percentage changes"</p>
-                        <p><strong>Constraints:</strong> "Focus only on Q1-Q3 2024"</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 4: Key Prompt Techniques -->
-        <div class="slide">
-            <div class="content">
-                <h2>Key Prompt Engineering Techniques</h2>
                 <div class="two-column">
                     <div class="box">
-                        <h3>1. Zero-Shot Prompting</h3>
-                        <p>Ask without examples - rely on AI knowledge</p>
-                        <div class="prompt" style="font-size: 0.95em; margin-top: 10px;">"Summarize key financial risks in this report"</div>
+                        <h3>⚡ The Shift</h3>
+                        <ul>
+                            <li>From <span class="highlight">reactive</span> to <span class="highlight">predictive</span></li>
+                            <li>From manual to <span class="highlight">automated</span></li>
+                            <li>From gut-feel to <span class="highlight">data-driven</span></li>
+                            <li>From hours to <span class="highlight">minutes</span></li>
+                        </ul>
                     </div>
                     <div class="box">
-                        <h3>2. Few-Shot Prompting</h3>
-                        <p>Provide examples to guide response</p>
-                        <div class="prompt" style="font-size: 0.95em; margin-top: 10px;">"Here are 3 examples... Now analyze this:"</div>
+                        <h3>💡 Executive Impact</h3>
+                        <ul>
+                            <li>Strategic decision speed <span class="highlight">3x faster</span></li>
+                            <li>Operational efficiency <span class="highlight">+40%</span></li>
+                            <li>Cost reduction <span class="highlight">15-30%</span></li>
+                            <li>Innovation cycle <span class="highlight">50% shorter</span></li>
+                        </ul>
                     </div>
-                    <div class="box">
-                        <h3>3. Chain-of-Thought</h3>
-                        <p>Ask for step-by-step reasoning</p>
-                        <div class="prompt" style="font-size: 0.95em; margin-top: 10px;">"Explain why revenue is up but profit down"</div>
-                    </div>
-                    <div class="box">
-                        <h3>4. Agent Prompting</h3>
-                        <p>Create specialized AI experts</p>
-                        <div class="prompt" style="font-size: 0.95em; margin-top: 10px;">"You are a CFO analyzing this data..."</div>
-                    </div>
+                </div>
+                <div class="quote">
+                    "AI is not replacing executives—it's empowering them to make better decisions faster."
                 </div>
             </div>
         </div>
 
-        <!-- Slide 5: Why AI Across Functions? -->
+        <!-- Slide 3: What is Prompt Engineering? -->
         <div class="slide">
             <div class="content">
-                <h2>Why AI Across Business Functions?</h2>
+                <h2>Prompt Engineering: Your AI Communication Language</h2>
+                <div class="key-point">
+                    <h3 style="margin-top: 0;">Definition</h3>
+                    <p style="font-size: 1.2em; line-height: 1.7;">The art and science of crafting <span class="highlight">precise instructions</span> to AI systems to generate <span class="highlight">strategic insights</span>, <span class="highlight">accurate analysis</span>, and <span class="highlight">actionable recommendations</span>.</p>
+                </div>
                 <div class="two-column">
                     <div class="box">
-                        <h3>Current Pain Points</h3>
+                        <h3>🎯 Why It Matters</h3>
                         <ul>
-                            <li>Manual data processing consuming <span class="highlight">40-60% of time</span></li>
-                            <li>Repetitive report generation</li>
-                            <li>Communication bottlenecks</li>
-                            <li>Data silos across departments</li>
-                            <li>Delayed decision-making</li>
-                            <li>Limited analysis capacity</li>
+                            <li>Quality of output = Quality of prompt</li>
+                            <li>Unlock <span class="highlight">10x productivity</span></li>
+                            <li>Reduce errors by <span class="highlight">80%</span></li>
+                            <li>Enable complex analysis in seconds</li>
+                            <li>Transform decision-making process</li>
                         </ul>
                     </div>
                     <div class="box">
-                        <h3>AI Solutions</h3>
+                        <h3>📊 Real Business Impact</h3>
                         <ul>
-                            <li><span class="highlight">70% reduction</span> in manual work</li>
-                            <li>Instant data insights</li>
-                            <li>Natural language queries</li>
-                            <li>Real-time analytics</li>
-                            <li>Enhanced collaboration</li>
-                            <li>Predictive capabilities</li>
+                            <li>Financial analysis: <span class="highlight">Hours → 5 minutes</span></li>
+                            <li>Board reports: <span class="highlight">2 days → 2 hours</span></li>
+                            <li>Market research: <span class="highlight">Weeks → 1 day</span></li>
+                            <li>Risk assessment: <span class="highlight">Real-time insights</span></li>
+                            <li>Strategic planning: <span class="highlight">Data-backed decisions</span></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 6: Finance Applications -->
+        <!-- Slide 4: The Executive Prompt Formula -->
         <div class="slide">
             <div class="content">
-                <h2>AI in Finance & Accounting</h2>
-                <div class="two-column">
-                    <div class="box">
-                        <h3>Core Finance Tasks</h3>
-                        <ul>
-                            <li><strong>Financial Reporting:</strong> Automated report generation</li>
-                            <li><strong>Forecasting:</strong> Revenue and expense predictions</li>
-                            <li><strong>Variance Analysis:</strong> Budget vs actual explanations</li>
-                            <li><strong>Cash Flow:</strong> Working capital optimization</li>
-                        </ul>
-                    </div>
-                    <div class="box">
-                        <h3>Advanced Analytics</h3>
-                        <ul>
-                            <li><strong>Fraud Detection:</strong> Anomaly identification</li>
-                            <li><strong>Risk Assessment:</strong> Financial risk scoring</li>
-                            <li><strong>Reconciliation:</strong> Automated matching</li>
-                            <li><strong>Compliance:</strong> Regulatory reporting</li>
-                        </ul>
+                <h2>The Executive Prompt Formula</h2>
+                <div class="box" style="background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%); color: white; padding: 35px;">
+                    <h3 style="color: white; font-size: 1.8em; text-align: center; margin-bottom: 25px;">C.T.F.C. Framework</h3>
+                    <div style="font-size: 1.3em; text-align: center; margin: 30px 0;">
+                        <div style="background: rgba(255,255,255,0.2); padding: 12px 20px; border-radius: 8px; margin: 10px; display: inline-block;">
+                            <strong>CONTEXT</strong>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.2); padding: 12px 20px; border-radius: 8px; margin: 10px; display: inline-block;">
+                            <strong>TASK</strong>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.2); padding: 12px 20px; border-radius: 8px; margin: 10px; display: inline-block;">
+                            <strong>FORMAT</strong>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.2); padding: 12px 20px; border-radius: 8px; margin: 10px; display: inline-block;">
+                            <strong>CONSTRAINTS</strong>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Slide 7: Finance Demo Setup -->
-        <div class="slide">
-            <div class="content">
-                <h2>Demo: Financial Analysis with Copilot</h2>
                 <div class="demo-box">
-                    <h3><span class="step-number">1</span>Setup</h3>
+                    <h3>🏦 CFO Example: Quarterly Financial Analysis</h3>
+                    <div style="font-size: 1.05em; line-height: 2; margin-top: 15px;">
+                        <p><strong>Context:</strong> "You are a senior financial analyst reviewing Q3 2024 performance for a $500M healthcare company"</p>
+                        <p><strong>Task:</strong> "Analyze revenue trends, identify variances >10%, and flag potential risks"</p>
+                        <p><strong>Format:</strong> "Executive summary (3 bullets) + detailed table with YoY/QoQ comparisons + risk matrix"</p>
+                        <p><strong>Constraints:</strong> "Focus on top 5 revenue streams, exclude one-time items, highlight only material variances"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Advanced Prompt Techniques -->
+        <div class="slide">
+            <div class="content">
+                <h2>Executive-Level Prompt Techniques</h2>
+                <div class="two-column">
+                    <div class="box">
+                        <h3>1️⃣ Zero-Shot Prompting</h3>
+                        <p style="margin-bottom: 10px;"><strong>When:</strong> Simple, straightforward tasks</p>
+                        <div class="prompt">"Summarize the key risks in our Q3 financial position"</div>
+                        <p style="margin-top: 10px; color: #6b7280;">✓ Quick insights, no examples needed</p>
+                    </div>
+                    <div class="box">
+                        <h3>2️⃣ Few-Shot Prompting</h3>
+                        <p style="margin-bottom: 10px;"><strong>When:</strong> Consistent format needed</p>
+                        <div class="prompt">"Here are 3 examples of KPI summaries I need. Now create for Operations division..."</div>
+                        <p style="margin-top: 10px; color: #6b7280;">✓ Standardized outputs</p>
+                    </div>
+                    <div class="box">
+                        <h3>3️⃣ Chain-of-Thought</h3>
+                        <p style="margin-bottom: 10px;"><strong>When:</strong> Complex analysis required</p>
+                        <div class="prompt">"Explain step-by-step why revenue increased 15% but profit margin declined 3%"</div>
+                        <p style="margin-top: 10px; color: #6b7280;">✓ Transparent reasoning</p>
+                    </div>
+                    <div class="box">
+                        <h3>4️⃣ Role-Based Prompting</h3>
+                        <p style="margin-bottom: 10px;"><strong>When:</strong> Expert perspective needed</p>
+                        <div class="prompt">"You are a CFO with 20 years experience. Review this M&A proposal and identify financial red flags"</div>
+                        <p style="margin-top: 10px; color: #6b7280;">✓ Domain expertise simulation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: The Business Case for AI -->
+        <div class="slide">
+            <div class="content">
+                <h2>The Executive Business Case</h2>
+                <div class="three-column">
+                    <div class="stat">
+                        <span class="stat-number">40-60%</span>
+                        Time spent on manual tasks
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">70%</span>
+                        Reduction with AI automation
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">$2.1M</span>
+                        Average annual savings (mid-size org)
+                    </div>
+                </div>
+                <div class="two-column">
+                    <div class="box">
+                        <h3>⚠️ Current Pain Points</h3>
+                        <ul>
+                            <li>Executives spending <span class="highlight">60% time</span> on reporting</li>
+                            <li>Decision delays due to data silos</li>
+                            <li>Inconsistent analysis across departments</li>
+                            <li>Limited capacity for strategic thinking</li>
+                            <li>Reactive vs. proactive management</li>
+                            <li>Slow response to market changes</li>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <h3>✅ AI-Enabled Solutions</h3>
+                        <ul>
+                            <li>Real-time dashboards and insights</li>
+                            <li>Predictive analytics for forward-looking decisions</li>
+                            <li>Unified data analysis across functions</li>
+                            <li>Free up <span class="highlight">70% time</span> for strategy</li>
+                            <li>Proactive risk identification</li>
+                            <li>Instant market intelligence</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: AI in Finance & Accounting -->
+        <div class="slide">
+            <div class="content">
+                <h2>AI for Finance Executives (CFO/Controller)</h2>
+                <div class="two-column">
+                    <div class="box">
+                        <h3>📈 Strategic Finance</h3>
+                        <ul>
+                            <li>Financial Planning & Analysis (FP&A)</li>
+                            <li>Budget vs. Actual Variance Analysis</li>
+                            <li>Cash flow forecasting (13-week, annual)</li>
+                            <li>Capital allocation optimization</li>
+                            <li>Scenario modeling (best/worst/likely)</li>
+                            <li>M&A financial due diligence</li>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <h3>🔍 Operations & Compliance</h3>
+                        <ul>
+                            <li>Month-end close acceleration</li>
+                            <li>Automated reconciliations</li>
+                            <li>Fraud detection & anomaly flagging</li>
+                            <li>SOX compliance documentation</li>
+                            <li>Audit preparation & response</li>
+                            <li>Tax planning & optimization</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="box">
+                    <h3>💼 Executive Reporting</h3>
                     <ul>
-                        <li>Open Excel with financial data (P&L, Balance Sheet, or Cash Flow)</li>
-                        <li>Format as Table (Ctrl + T)</li>
-                        <li>Activate Copilot in Excel ribbon</li>
+                        <li>Board deck preparation (financial sections)</li>
+                        <li>Investor relations materials</li>
+                        <li>KPI dashboards with commentary</li>
+                        <li>Management discussion & analysis (MD&A)</li>
                     </ul>
                 </div>
-                <h3>Try These Finance Prompts:</h3>
-                <div class="prompt">"Analyze revenue trends over the past 4 quarters and explain the key drivers"</div>
-                <div class="prompt">"Calculate key financial ratios: current ratio, quick ratio, and ROE"</div>
-                <div class="prompt">"Identify the top 5 expense categories and their growth rates"</div>
-                <div class="prompt">"Create a variance analysis comparing budget to actual for Q3"</div>
             </div>
         </div>
 
-        <!-- Slide 8: Communication Applications -->
+        <!-- Slide 8: Finance Executive Demos -->
         <div class="slide">
             <div class="content">
-                <h2>AI in Communication</h2>
-                <div class="two-column">
-                    <div class="box">
-                        <h3>Internal Communication</h3>
-                        <ul>
-                            <li><strong>Meeting Summaries:</strong> Automatic transcription and action items</li>
-                            <li><strong>Email Drafting:</strong> Professional correspondence</li>
-                            <li><strong>Policy Documents:</strong> Clear, accessible writing</li>
-                            <li><strong>Training Materials:</strong> Instructional content</li>
-                        </ul>
-                    </div>
-                    <div class="box">
-                        <h3>External Communication</h3>
-                        <ul>
-                            <li><strong>Client Presentations:</strong> Data storytelling</li>
-                            <li><strong>Reports:</strong> Executive summaries</li>
-                            <li><strong>Proposals:</strong> Persuasive documents</li>
-                            <li><strong>Marketing:</strong> Tailored messaging</li>
-                        </ul>
-                    </div>
+                <h2>Live Demo: CFO Use Cases</h2>
+                
+                <div class="demo-box">
+                    <h3>📊 Scenario 1: Board Presentation Prep</h3>
+                    <div class="prompt">"Analyze Q3 financials. Revenue up 12% but EBITDA margin down 2%. Create executive summary explaining drivers with 3 key takeaways for board presentation. Include competitive benchmarking context."</div>
+                </div>
+
+                <div class="demo-box">
+                    <h3>💰 Scenario 2: Cash Flow Crisis</h3>
+                    <div class="prompt">"Our 13-week cash flow shows potential shortfall in Week 9. Analyze AR aging, AP terms, and inventory turnover. Provide 3 actionable solutions with impact quantification and implementation timeline."</div>
+                </div>
+
+                <div class="demo-box">
+                    <h3>📉 Scenario 3: Variance Investigation</h3>
+                    <div class="prompt">"Operating expenses increased 18% vs. budget in Q3. Break down by category, identify top 5 drivers, compare to prior year same period, and recommend corrective actions with expected savings."</div>
+                </div>
+
+                <div class="key-point">
+                    <strong>💡 Executive Tip:</strong> Always request "executive summary + detailed analysis" format. The summary gives you the 30-second version for decisions, details support deep dives.
                 </div>
             </div>
         </div>
 
-        <!-- Slide 9: Communication Demo -->
+        <!-- Slide 9: AI in Healthcare Leadership -->
         <div class="slide">
             <div class="content">
-                <h2>Demo: Communication Enhancement</h2>
-                <h3>Email & Document Creation</h3>
-                <div class="prompt">"Draft a professional email to stakeholders explaining our Q3 financial performance. Include key metrics and maintain an optimistic but realistic tone."</div>
-                
-                <h3>Meeting Notes</h3>
-                <div class="prompt">"Summarize this meeting transcript into: 1) Key decisions, 2) Action items with owners, 3) Follow-up questions"</div>
-                
-                <h3>Presentation Content</h3>
-                <div class="prompt">"Create talking points for a 10-minute presentation on our annual budget. Target audience: non-financial managers."</div>
-                
-                <h3>Translation & Clarity</h3>
-                <div class="prompt">"Simplify this technical financial explanation for a general audience without losing accuracy"</div>
-            </div>
-        </div>
-
-        <!-- Slide 10: Healthcare Applications -->
-        <div class="slide">
-            <div class="content">
-                <h2>AI in Healthcare Administration</h2>
+                <h2>AI for Healthcare Executives</h2>
                 <div class="two-column">
                     <div class="box">
-                        <h3>Financial Operations</h3>
+                        <h3>🏥 Financial Operations</h3>
                         <ul>
-                            <li><strong>Claims Processing:</strong> Automated verification</li>
-                            <li><strong>Revenue Cycle:</strong> Billing optimization</li>
-                            <li><strong>Cost Analysis:</strong> Departmental spending</li>
-                            <li><strong>Budget Planning:</strong> Resource allocation</li>
+                            <li>Revenue cycle management optimization</li>
+                            <li>Claims denial analysis & prevention</li>
+                            <li>Payer contract performance analysis</li>
+                            <li>Bad debt & charity care forecasting</li>
+                            <li>Service line profitability analysis</li>
+                            <li>Physician compensation modeling</li>
                         </ul>
                     </div>
                     <div class="box">
-                        <h3>Administrative Tasks</h3>
+                        <h3>⚕️ Clinical Operations</h3>
                         <ul>
-                            <li><strong>Patient Data:</strong> Record summarization</li>
-                            <li><strong>Scheduling:</strong> Optimization algorithms</li>
-                            <li><strong>Compliance:</strong> HIPAA documentation</li>
-                            <li><strong>Reporting:</strong> Quality metrics</li>
+                            <li>Length of stay (LOS) optimization</li>
+                            <li>Readmission risk prediction</li>
+                            <li>Capacity planning & bed management</li>
+                            <li>Surgery scheduling optimization</li>
+                            <li>Emergency dept. flow analysis</li>
+                            <li>Clinical quality metrics tracking</li>
                         </ul>
                     </div>
+                </div>
+                <div class="box">
+                    <h3>📋 Regulatory & Compliance</h3>
+                    <ul>
+                        <li>HIPAA compliance documentation</li>
+                        <li>CMS reporting automation</li>
+                        <li>Value-based care program analysis</li>
+                        <li>Quality improvement initiatives tracking</li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 11: Healthcare Demo -->
+        <!-- Slide 10: Healthcare Executive Demos -->
         <div class="slide">
             <div class="content">
-                <h2>Demo: Healthcare Finance Analysis</h2>
-                <h3>Claims & Revenue Analysis</h3>
-                <div class="prompt">"Analyze claim denial patterns in this dataset. Identify top 3 denial reasons and their financial impact."</div>
+                <h2>Live Demo: Healthcare Leadership</h2>
                 
-                <h3>Department Cost Analysis</h3>
-                <div class="prompt">"Compare departmental spending across Q1-Q3. Which departments exceeded budget and by how much?"</div>
-                
-                <h3>Patient Volume & Revenue</h3>
-                <div class="prompt">"Correlate patient volume trends with revenue. Create a visualization showing the relationship."</div>
-                
-                <h3>Compliance Reporting</h3>
-                <div class="prompt">"Generate a summary of financial compliance metrics for the board meeting, highlighting areas of concern."</div>
-            </div>
-        </div>
+                <div class="demo-box">
+                    <h3>💳 Denial Management</h3>
+                    <div class="prompt">"Analyze our claims denial data for past 6 months. Identify top 3 denial reasons by financial impact, breakdown by payer and service type, calculate potential revenue recovery, and create action plan with timeline to reduce denials by 25%."</div>
+                </div>
 
-        <!-- Slide 12: HR Applications -->
-        <div class="slide">
-            <div class="content">
-                <h2>AI in Human Resources</h2>
-                <div class="two-column">
-                    <div class="box">
-                        <h3>Talent Management</h3>
-                        <ul>
-                            <li><strong>Recruitment:</strong> Resume screening and matching</li>
-                            <li><strong>Onboarding:</strong> Automated documentation</li>
-                            <li><strong>Performance:</strong> Review analysis and insights</li>
-                            <li><strong>Succession:</strong> Talent pipeline planning</li>
-                        </ul>
-                    </div>
-                    <div class="box">
-                        <h3>HR Analytics</h3>
-                        <ul>
-                            <li><strong>Compensation:</strong> Market analysis and equity</li>
-                            <li><strong>Retention:</strong> Attrition prediction</li>
-                            <li><strong>Engagement:</strong> Survey analysis</li>
-                            <li><strong>Workforce Planning:</strong> Headcount forecasting</li>
-                        </ul>
-                    </div>
+                <div class="demo-box">
+                    <h3>📊 Service Line Performance</h3>
+                    <div class="prompt">"Compare our cardiology service line performance to national benchmarks. Analyze: case volumes, revenue per case, contribution margin, LOS, and patient satisfaction. Identify gaps and recommend 5 strategic initiatives to improve profitability."</div>
+                </div>
+
+                <div class="demo-box">
+                    <h3>🏥 Capacity Planning</h3>
+                    <div class="prompt">"Using past 2 years of data, forecast ER visit volumes for next 12 months. Account for seasonality, local demographics, and recent market trends. Calculate required staffing levels and estimate budget impact. Include surge capacity recommendations."</div>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 13: HR Demo -->
+        <!-- Slide 11: AI in Human Resources -->
         <div class="slide">
             <div class="content">
-                <h2>Demo: HR Analytics & Operations</h2>
-                <h3>Compensation Analysis</h3>
-                <div class="prompt">"Analyze salary data by department and role. Identify any pay equity issues or market misalignments."</div>
-                
-                <h3>Attrition Prediction</h3>
-                <div class="prompt">"Based on historical data, identify employees at risk of leaving. What are the common patterns?"</div>
-                
-                <h3>Job Description Creation</h3>
-                <div class="prompt">"Create a comprehensive job description for a Senior Financial Analyst role, including responsibilities, qualifications, and competencies."</div>
-                
-                <h3>Performance Review Summary</h3>
-                <div class="prompt">"Summarize key themes from 50 employee performance reviews. What are the top development needs?"</div>
+                <h2>AI for HR Executives (CHRO/VP HR)</h2>
+                <div class="two-column">
+                    <div class="box">
+                        <h3>👥 Talent Management</h3>
+                        <ul>
+                            <li>Strategic workforce planning</li>
+                            <li>Recruitment process optimization</li>
+                            <li>Candidate screening & assessment</li>
+                            <li>Offer letter & contract generation</li>
+                            <li>Onboarding program design</li>
+                            <li>Career path development</li>
+                            <li>Succession planning analysis</li>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <h3>📊 People Analytics</h3>
+                        <ul>
+                            <li>Turnover prediction & prevention</li>
+                            <li>Engagement survey analysis</li>
+                            <li>Compensation benchmarking</li>
+                            <li>Pay equity analysis</li>
+                            <li>Performance rating calibration</li>
+                            <li>Skills gap identification</li>
+                            <li>DEI metrics & reporting</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="box">
+                    <h3>⚖️ Compliance & Risk</h3>
+                    <ul>
+                        <li>Policy documentation & updates</li>
+                        <li>Employee handbook creation</li>
+                        <li>Investigation documentation</li>
+                        <li>Compliance training materials</li>
+                        <li>Labor law adherence monitoring</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
-        <!-- Slide 14: Cross-Functional Integration -->
+        <!-- Slide 12: HR Executive Demos -->
+        <div class="slide">
+            <div class="content">
+                <h2>Live Demo: HR Leadership Use Cases</h2>
+                
+                <div class="demo-box">
+                    <h3>📈 Turnover Crisis Analysis</h3>
+                    <div class="prompt">"Our engineering department turnover increased from 12% to 22% in 6 months. Analyze exit interview data, compensation vs. market, promotion rates, manager feedback scores, and work-from-home policy changes. Identify root causes and create retention strategy with ROI projections for each initiative."</div>
+                </div>
+
+                <div class="demo-box">
+                    <h3>💰 Pay Equity Audit</h3>
+                    <div class="prompt">"Conduct comprehensive pay equity analysis across all job levels and demographics. Control for: tenure, performance ratings, education, location. Flag positions with unexplained variance >5%. Estimate budget required for equity adjustments and create phased implementation plan."</div>
+                </div>
+
+                <div class="demo-box">
+                    <h3>🎯 Workforce Planning</h3>
+                    <div class="prompt">"We're launching new product line requiring 50 additional hires over 18 months. Analyze: current skills inventory, internal mobility potential, external talent market, compensation requirements, ramp-up time. Create hiring roadmap with monthly targets and budget forecast."</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: AI in Corporate Communication -->
+        <div class="slide">
+            <div class="content">
+                <h2>AI for Communication Executives</h2>
+                <div class="two-column">
+                    <div class="box">
+                        <h3>📢 Internal Communication</h3>
+                        <ul>
+                            <li>Executive announcements & memos</li>
+                            <li>All-hands meeting presentations</li>
+                            <li>Change management messaging</li>
+                            <li>Crisis communication plans</li>
+                            <li>Policy rollout communications</li>
+                            <li>Employee newsletter content</li>
+                            <li>Town hall Q&A preparation</li>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <h3>🌐 External Communication</h3>
+                        <ul>
+                            <li>Press releases & media statements</li>
+                            <li>Investor presentations</li>
+                            <li>Annual report narratives</li>
+                            <li>Customer communications</li>
+                            <li>Social media strategy & content</li>
+                            <li>Brand messaging frameworks</li>
+                            <li>Stakeholder engagement plans</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="box">
+                    <h3>📝 Content Optimization</h3>
+                    <ul>
+                        <li>Message consistency across channels</li>
+                        <li>Tone & voice adaptation for audiences</li>
+                        <li>Executive speech writing</li>
+                        <li>Meeting summaries & action items</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Communication Demos -->
+        <div class="slide">
+            <div class="content">
+                <h2>Live Demo: Executive Communication</h2>
+                
+                <div class="demo-box">
+                    <h3>📧 Acquisition Announcement</h3>
+                    <div class="prompt">"Draft CEO email announcing acquisition of competitor ABC Corp ($200M deal). Tone: confident but empathetic. Address: strategic rationale, employee job security, integration timeline, cultural fit. Three versions: 1) Employees, 2) Customers, 3) Investors. Keep each under 400 words."</div>
+                </div>
+
+                <div class="demo-box">
+                    <h3>🎤 Investor Presentation</h3>
+                    <div class="prompt">"Create executive talking points for Q3 earnings call. Revenue beat by 3%, but lowered guidance due to market headwinds. Structure: strong Q3 highlights, guidance adjustment rationale, competitive positioning, strategic initiatives. Anticipate top 5 analyst questions with suggested responses."</div>
+                </div>
+
+                <div class="demo-box">
+                    <h3>⚠️ Crisis Response</h3>
+                    <div class="prompt">"Data breach exposed 50K customer records. Draft: 1) Internal leadership notification (immediate), 2) Employee communication (within 4 hours), 3) Customer notification email, 4) Public statement. Tone: transparent, accountable, solution-focused. Include FAQ addressing legal, technical, and remediation questions."</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Cross-Functional Integration -->
         <div class="slide">
             <div class="content">
                 <h2>Cross-Functional AI Integration</h2>
-                <div class="box">
-                    <h3>Breaking Down Silos</h3>
-                    <p style="font-size: 1.2em; line-height: 1.8;">AI enables <span class="highlight">seamless collaboration</span> across Finance, HR, Healthcare, and Communication functions.</p>
-                </div>
-                <table style="font-size: 1em;">
-                    <thead>
-                        <tr>
-                            <th>Integration</th>
-                            <th>Use Case</th>
-                            <th>Benefit</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Finance + HR</strong></td>
-                            <td>Workforce cost analysis and planning</td>
-                            <td>Optimized compensation budgets</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Healthcare + Finance</strong></td>
-                            <td>Revenue cycle optimization</td>
-                            <td>Improved cash flow</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Communication + All</strong></td>
-                            <td>Automated reporting across functions</td>
-                            <td>Faster decision-making</td>
-                        </tr>
-                        <tr>
-                            <td><strong>HR + Communication</strong></td>
-                            <td>Employee engagement messaging</td>
-                            <td>Better employee experience</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Slide 15: Advanced Techniques -->
-        <div class="slide">
-            <div class="content">
-                <h2>Advanced AI Techniques</h2>
-                <div class="two-column">
-                    <div class="box">
-                        <h3>Chain-of-Thought Analysis</h3>
-                        <p>Force step-by-step reasoning for complex problems</p>
-                        <div class="prompt" style="font-size: 0.9em;">"Explain step-by-step why employee turnover increased 15% despite higher satisfaction scores"</div>
-                    </div>
-                    <div class="box">
-                        <h3>Agent Prompting</h3>
-                        <p>Create specialized AI personas</p>
-                        <div class="prompt" style="font-size: 0.9em;">"You are a CFO with 20 years experience. Analyze this investment opportunity"</div>
-                    </div>
-                    <div class="box">
-                        <h3>Explicit Reasoning</h3>
-                        <p>Show all calculations transparently</p>
-                        <div class="prompt" style="font-size: 0.9em;">"Calculate ROI showing each step: initial investment, returns, time period"</div>
-                    </div>
-                    <div class="box">
-                        <h3>Iterative Refinement</h3>
-                        <p>Progressively improve outputs</p>
-                        <div class="prompt" style="font-size: 0.9em;">"Revise this report to be more concise while keeping key insights"</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 16: Tools Overview -->
-        <div class="slide">
-            <div class="content">
-                <h2>AI Tools Ecosystem</h2>
-                <div class="two-column">
-                    <div class="box">
-                        <h3>Microsoft 365 Copilot</h3>
-                        <ul>
-                            <li><strong>Excel:</strong> Data analysis and visualization</li>
-                            <li><strong>Word:</strong> Document creation</li>
-                            <li><strong>Outlook:</strong> Email management</li>
-                            <li><strong>PowerPoint:</strong> Presentation design</li>
-                            <li><strong>Teams:</strong> Meeting summaries</li>
-                        </ul>
-                    </div>
-                    <div class="box">
-                        <h3>Specialized AI Tools</h3>
-                        <ul>
-                            <li><strong>ChatGPT Plus:</strong> Complex analysis</li>
-                            <li><strong>Claude:</strong> Document review</li>
-                            <li><strong>Power BI:</strong> Advanced analytics</li>
-                            <li><strong>Tableau:</strong> Data visualization</li>
-                            <li><strong>Alteryx:</strong> Predictive analytics</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 17: Best Practices -->
-        <div class="slide">
-            <div class="content">
-                <h2>Best Practices for AI Use</h2>
-                <div class="two-column">
-                    <div class="box">
-                        <h3>Do</h3>
-                        <ul style="font-size: 1.1em;">
-                            <li>Be specific and clear in prompts</li>
-                            <li>Provide context and constraints</li>
-                            <li>Verify all AI outputs</li>
-                            <li>Iterate and refine prompts</li>
-                            <li>Document your process</li>
-                            <li>Maintain data security</li>
-                            <li>Combine AI with human judgment</li>
-                        </ul>
-                    </div>
-                    <div class="box">
-                        <h3>Don't</h3>
-                        <ul style="font-size: 1.1em;">
-                            <li>Use vague or ambiguous language</li>
-                            <li>Share sensitive data with free tools</li>
-                            <li>Accept outputs without validation</li>
-                            <li>Skip human review</li>
-                            <li>Over-rely on AI for decisions</li>
-                            <li>Ignore bias and fairness</li>
-                            <li>Forget ethical considerations</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 18: Risks & Controls -->
-        <div class="slide">
-            <div class="content">
-                <h2>Risks & Control Measures</h2>
                 <table>
-                    <thead>
-                        <tr>
-                            <th>Risk</th>
-                            <th>Control Measures</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>AI Hallucinations</strong><br>Incorrect information</td>
-                            <td>Always verify outputs, dual review, test with known data</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Data Security</strong><br>Sensitive data exposure</td>
-                            <td>Use enterprise versions, anonymize data, follow data policies</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Bias & Fairness</strong><br>Skewed results</td>
-                            <td>Test on diverse datasets, combine with human judgment</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Privacy Compliance</strong><br>Regulatory violations</td>
-                            <td>Follow GDPR, HIPAA, and organizational policies</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Over-Reliance</strong><br>Skill degradation</td>
-                            <td>Maintain core competencies, use AI as assistant not replacement</td>
-                        </tr>
-                    </tbody>
+                    <tr>
+                        <th>Integration</th>
+                        <th>Use Case</th>
+                        <th>Business Impact</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Finance + HR</strong></td>
+                        <td>Headcount planning with budget constraints</td>
+                        <td>Optimized talent investment, 15-20% cost savings</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Finance + Operations</strong></td>
+                        <td>Cost reduction analysis by department</td>
+                        <td>Targeted efficiency improvements, 10-25% savings</td>
+                    </tr>
+                    <tr>
+                        <td><strong>HR + Communication</strong></td>
+                        <td>Employee engagement campaign design</td>
+                        <td>Improved retention, 30% higher engagement</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Healthcare + Finance</strong></td>
+                        <td>Revenue cycle optimization</td>
+                        <td>Reduced days in AR by 25%, improved cash flow</td>
+                    </tr>
+                    <tr>
+                        <td><strong>All Functions</strong></td>
+                        <td>Strategic planning & scenario modeling</td>
+                        <td>Faster decisions, risk mitigation, growth acceleration</td>
+                    </tr>
                 </table>
             </div>
         </div>
 
-        <!-- Slide 19: Case Study - Finance -->
+        <!-- Slide 16: AI Tools Ecosystem -->
         <div class="slide">
             <div class="content">
-                <h2>Case Study: Financial Variance Analysis</h2>
-                <div class="box">
-                    <h3>Scenario</h3>
-                    <p style="font-size: 1.2em; line-height: 1.8;">Your company's Q3 results show <span class="highlight">revenue up 12% but operating profit down 8%</span>. The CFO needs an explanation for the board meeting.</p>
+                <h2>Enterprise AI Tools Landscape</h2>
+                <div class="three-column">
+                    <div class="box">
+                        <h3>🏢 Microsoft 365 Copilot</h3>
+                        <ul>
+                            <li>Excel (data analysis)</li>
+                            <li>Word (document creation)</li>
+                            <li>PowerPoint (presentations)</li>
+                            <li>Outlook (email management)</li>
+                            <li>Teams (meeting summaries)</li>
+                        </ul>
+                        <div class="badge">Enterprise Ready</div>
+                    </div>
+                    <div class="box">
+                        <h3>🤖 Specialized AI Platforms</h3>
+                        <ul>
+                            <li>ChatGPT Enterprise (OpenAI)</li>
+                            <li>Claude for Work (Anthropic)</li>
+                            <li>Gemini Business (Google)</li>
+                            <li>Amazon Bedrock</li>
+                        </ul>
+                        <div class="badge">High Security</div>
+                    </div>
+                    <div class="box">
+                        <h3>📊 Analytics & BI</h3>
+                        <ul>
+                            <li>Power BI with AI</li>
+                            <li>Tableau AI</li>
+                            <li>Salesforce Einstein</li>
+                            <li>SAP AI Business Services</li>
+                        </ul>
+                        <div class="badge">Data-Focused</div>
+                    </div>
                 </div>
-                <h3>Progressive Analysis Prompts</h3>
-                <div class="prompt">"Analyze this P&L data. What are the top 3 expense categories that increased significantly?"</div>
-                <div class="prompt">"Calculate the gross margin change between Q2 and Q3. Show step-by-step calculations."</div>
-                <div class="prompt">"Create a waterfall chart showing the bridge from Q2 to Q3 operating profit."</div>
-                <div class="prompt">"Write a 3-paragraph executive summary explaining the profit decline for the board, including recommended actions."</div>
+                <div class="key-point">
+                    <strong>🔐 Executive Consideration:</strong> Always use enterprise versions with data privacy guarantees, SOC 2 compliance, and admin controls. Never use free consumer versions for business-critical or confidential information.
+                </div>
             </div>
         </div>
 
-        <!-- Slide 20: Case Study - Healthcare -->
+        <!-- Slide 17: Executive Best Practices -->
         <div class="slide">
             <div class="content">
-                <h2>Case Study: Healthcare Revenue Optimization</h2>
-                <div class="box">
-                    <h3>Scenario</h3>
-                    <p style="font-size: 1.2em; line-height: 1.8;">A hospital network needs to <span class="highlight">reduce claim denials by 25%</span> and improve days in accounts receivable.</p>
+                <h2>Executive Best Practices: Do's and Don'ts</h2>
+                <div class="two-column">
+                    <div class="box" style="border-left-color: #10b981;">
+                        <h3>✅ DO</h3>
+                        <ul>
+                            <li><strong>Be specific:</strong> "Analyze Q3 EBITDA variance by division" vs "analyze financials"</li>
+                            <li><strong>Set context:</strong> Include industry, company size, strategic priorities</li>
+                            <li><strong>Request formats:</strong> "Executive summary + table + 3 recommendations"</li>
+                            <li><strong>Iterate:</strong> Refine prompts based on outputs</li>
+                            <li><strong>Verify always:</strong> AI assists, humans decide</li>
+                            <li><strong>Document prompts:</strong> Build your prompt library</li>
+                            <li><strong>Share learnings:</strong> Build organizational capability</li>
+                        </ul>
+                    </div>
+                    <div class="box" style="border-left-color: #ef4444;">
+                        <h3>❌ DON'T</h3>
+                        <ul>
+                            <li><strong>Be vague:</strong> "Help with finances" → unclear output</li>
+                            <li><strong>Assume context:</strong> AI doesn't know your business</li>
+                            <li><strong>Skip verification:</strong> AI can hallucinate facts</li>
+                            <li><strong>Share sensitive data:</strong> Without proper enterprise tools</li>
+                            <li><strong>Over-rely:</strong> AI augments, doesn't replace judgment</li>
+                            <li><strong>Ignore ethics:</strong> Consider bias, fairness, transparency</li>
+                            <li><strong>Work in silos:</strong> AI adoption is enterprise transformation</li>
+                        </ul>
+                    </div>
                 </div>
-                <h3>Analysis Workflow</h3>
-                <div class="prompt">"Analyze claim denial data by payer, service type, and denial reason. Which combinations have the highest denial rates?"</div>
-                <div class="prompt">"Calculate the financial impact of the top 5 denial reasons. Show monthly trends."</div>
-                <div class="prompt">"Identify which departments have the longest days in AR. Are there patterns by insurance type?"</div>
-                <div class="prompt">"Create an action plan with specific recommendations to reduce denials, prioritized by financial impact."</div>
             </div>
         </div>
 
-        <!-- Slide 21: Case Study - HR -->
+        <!-- Slide 18: Risk Management & Controls -->
         <div class="slide">
             <div class="content">
-                <h2>Case Study: Talent Retention Strategy</h2>
-                <div class="box">
-                    <h3>Scenario</h3>
-                    <p style="font-size: 1.2em; line-height: 1.8;">Employee turnover increased to <span class="highlight">18% (from 12%)</span>, costing $2M annually. HR needs data-driven retention strategies.</p>
+                <h2>AI Risk Management Framework</h2>
+                <table>
+                    <tr>
+                        <th>Risk Category</th>
+                        <th>Potential Impact</th>
+                        <th>Mitigation Strategy</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Hallucinations</strong></td>
+                        <td>Incorrect facts, made-up data</td>
+                        <td>Always verify outputs, cross-reference sources, human review required</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Privacy</strong></td>
+                        <td>Confidential info exposure</td>
+                        <td>Enterprise tools only, data retention policies, access controls</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bias & Fairness</strong></td>
+                        <td>Discriminatory outputs</td>
+                        <td>Regular audits, diverse training data, human oversight</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Over-reliance</strong></td>
+                        <td>Reduced critical thinking</td>
+                        <td>AI as tool not decision-maker, maintain domain expertise</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Compliance</strong></td>
+                        <td>Regulatory violations</td>
+                        <td>Legal review of use cases, industry-specific guidelines</td>
+                    </tr>
+                </table>
+                <div class="key-point">
+                    <strong>🛡️ Executive Responsibility:</strong> Establish AI governance committee, define acceptable use policy, implement monitoring, and ensure regular training.
                 </div>
-                <h3>Data-Driven Approach</h3>
-                <div class="prompt">"Analyze employee data to identify characteristics of employees who left vs. those who stayed. What are the key differences?"</div>
-                <div class="prompt">"Which departments have the highest turnover? Calculate the cost impact per department."</div>
-                <div class="prompt">"Compare compensation levels of departed employees against market benchmarks and current employees."</div>
-                <div class="prompt">"Draft a retention strategy memo with 5 specific recommendations based on this analysis, including estimated cost and impact."</div>
             </div>
         </div>
 
-        <!-- Slide 22: Implementation Roadmap -->
+        <!-- Slide 19: Strategic Planning Case Study -->
         <div class="slide">
             <div class="content">
-                <h2>Implementation Roadmap</h2>
-                <div class="box">
-                    <h3>Phase 1: Foundation (Weeks 1-2)</h3>
+                <h2>Case Study: Strategic Planning</h2>
+                <div class="box" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(249, 115, 22, 0.1)); border-left-color: #ef4444;">
+                    <h3>📋 Scenario</h3>
+                    <p style="font-size: 1.1em; line-height: 1.7;">Mid-size manufacturing company ($250M revenue) facing:</p>
                     <ul>
-                        <li>Secure AI tool licenses and access</li>
-                        <li>Complete initial training</li>
-                        <li>Review organizational AI policies</li>
-                        <li>Identify pilot use cases</li>
+                        <li>Revenue flat for 2 years</li>
+                        <li>New competitor entering market with 30% lower prices</li>
+                        <li>Supply chain disruptions increasing COGS by 15%</li>
+                        <li>Board demanding 3-year strategic plan in 2 weeks</li>
                     </ul>
                 </div>
-                <div class="box">
-                    <h3>Phase 2: Pilot (Weeks 3-6)</h3>
+
+                <div class="demo-box">
+                    <h3>🤖 AI-Assisted Approach</h3>
+                    <div class="prompt">"You are strategic planning consultant. Analyze manufacturing industry facing low-cost competition and supply chain issues. Create framework for 3-year strategic plan including: 1) Market analysis (TAM, trends, competitive dynamics), 2) Strategic options (cost leadership vs differentiation vs niche), 3) Financial projections for each option, 4) Implementation roadmap, 5) Key risks and mitigation. Include decision matrix for executive team."</div>
+                </div>
+
+                <div class="stat">
+                    <span class="stat-number">2 weeks → 3 days</span>
+                    Strategic planning timeline with AI assistance
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 20: M&A Due Diligence Case -->
+        <div class="slide">
+            <div class="content">
+                <h2>Case Study: M&A Due Diligence</h2>
+                <div class="box" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1)); border-left-color: #10b981;">
+                    <h3>📋 Scenario</h3>
+                    <p style="font-size: 1.1em; line-height: 1.7;">Potential acquisition target ($80M healthcare services company):</p>
                     <ul>
-                        <li>Test AI on non-sensitive data</li>
-                        <li>Document successes and challenges</li>
-                        <li>Build prompt libraries</li>
-                        <li>Measure time savings and accuracy</li>
+                        <li>3 years of financial statements provided</li>
+                        <li>Complex payer mix and revenue streams</li>
+                        <li>Need to assess financial health in 72 hours</li>
+                        <li>Identify deal-breakers before LOI</li>
                     </ul>
                 </div>
+
+                <div class="demo-box">
+                    <h3>🤖 AI-Enhanced Due Diligence</h3>
+                    <div class="prompt">"Analyze 3-year financials for healthcare services acquisition target. Focus on: 1) Revenue quality (payer concentration, collectability, organic vs inorganic growth), 2) Profitability trends (margin analysis, EBITDA adjustments needed), 3) Working capital (DSO, inventory efficiency, cash conversion cycle), 4) Red flags (accounting irregularities, one-time items, related party transactions), 5) Valuation implications. Provide summary of key findings and go/no-go recommendation with supporting data."</div>
+                </div>
+
+                <div class="two-column">
+                    <div class="stat">
+                        <span class="stat-number">5 days → 8 hours</span>
+                        Initial financial analysis
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">15 → 3</span>
+                        Follow-up questions needed
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 21: Implementation Roadmap Phase 1 -->
+        <div class="slide">
+            <div class="content">
+                <h2>Implementation Roadmap: Phase 1</h2>
+                <h3 style="text-align: center; color: #7c3aed; margin-bottom: 20px;">Foundation (Weeks 1-4)</h3>
+                
                 <div class="box">
-                    <h3>Phase 3: Expansion (Months 2-3)</h3>
+                    <h3><span class="step-number">1</span> Assess & Secure (Week 1)</h3>
                     <ul>
-                        <li>Roll out to additional teams</li>
-                        <li>Share best practices</li>
-                        <li>Refine workflows</li>
-                        <li>Track ROI metrics</li>
+                        <li>Audit current AI tool usage (shadow IT risk)</li>
+                        <li>Select enterprise AI platform (Microsoft, OpenAI, etc.)</li>
+                        <li>Procure licenses for pilot group</li>
+                        <li>IT security & compliance review</li>
                     </ul>
                 </div>
+
                 <div class="box">
-                    <h3>Phase 4: Scale (Month 4+)</h3>
+                    <h3><span class="step-number">2</span> Govern & Policy (Week 2)</h3>
                     <ul>
-                        <li>Enterprise-wide deployment</li>
-                        <li>Advanced use cases</li>
-                        <li>Continuous improvement</li>
-                        <li>Innovation initiatives</li>
+                        <li>Establish AI governance committee</li>
+                        <li>Draft acceptable use policy</li>
+                        <li>Define data classification guidelines</li>
+                        <li>Create escalation procedures</li>
+                    </ul>
+                </div>
+
+                <div class="box">
+                    <h3><span class="step-number">3</span> Pilot & Train (Weeks 3-4)</h3>
+                    <ul>
+                        <li>Select 20-30 pilot users (champions)</li>
+                        <li>Executive training workshop (this session)</li>
+                        <li>Hands-on practice with real use cases</li>
+                        <li>Build internal prompt library</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 22: Implementation Roadmap Phase 2-3 -->
+        <div class="slide">
+            <div class="content">
+                <h2>Implementation Roadmap: Scale & Optimize</h2>
+                
+                <div class="two-column">
+                    <div class="box">
+                        <h3><span class="step-number">4</span> Phase 2: Scale (Months 2-3)</h3>
+                        <ul>
+                            <li>Expand to all managers and executives</li>
+                            <li>Department-specific training sessions</li>
+                            <li>Success story documentation</li>
+                            <li>Monthly metric tracking (time saved, quality)</li>
+                            <li>Refine governance based on feedback</li>
+                            <li>Build center of excellence (CoE)</li>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <h3><span class="step-number">5</span> Phase 3: Optimize (Months 4-6)</h3>
+                        <ul>
+                            <li>Organization-wide rollout</li>
+                            <li>Advanced technique training</li>
+                            <li>Custom integrations (ERP, CRM, etc.)</li>
+                            <li>ROI measurement and reporting</li>
+                            <li>Continuous improvement program</li>
+                            <li>AI capability benchmarking</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="key-point">
+                    <h3 style="margin-top: 0;">🎯 Success Metrics</h3>
+                    <ul>
+                        <li><strong>Adoption:</strong> % of employees actively using AI tools weekly</li>
+                        <li><strong>Efficiency:</strong> Hours saved per employee per week</li>
+                        <li><strong>Quality:</strong> Error rate reduction, output improvement</li>
+                        <li><strong>Innovation:</strong> New use cases identified by teams</li>
+                        <li><strong>ROI:</strong> Cost savings + revenue impact vs. investment</li>
                     </ul>
                 </div>
             </div>
@@ -859,137 +1032,647 @@
         <!-- Slide 23: ROI & Business Case -->
         <div class="slide">
             <div class="content">
-                <h2>ROI & Business Case</h2>
-                <div class="two-column">
+                <h2>ROI Calculator: Executive Edition</h2>
+                
+                <div class="stat">
+                    <span class="stat-number">3-6 months</span>
+                    Typical payback period for AI investment
+                </div>
+
+                <table>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Before AI</th>
+                        <th>After AI</th>
+                        <th>Impact</th>
+                    </tr>
+                    <tr>
+                        <td>Board report preparation</td>
+                        <td>16 hours</td>
+                        <td>4 hours</td>
+                        <td><span class="highlight">75% faster</span></td>
+                    </tr>
+                    <tr>
+                        <td>Financial analysis (monthly)</td>
+                        <td>40 hours</td>
+                        <td>12 hours</td>
+                        <td><span class="highlight">70% reduction</span></td>
+                    </tr>
+                    <tr>
+                        <td>HR policy documentation</td>
+                        <td>2 weeks</td>
+                        <td>3 days</td>
+                        <td><span class="highlight">80% faster</span></td>
+                    </tr>
+                    <tr>
+                        <td>Meeting minutes & action items</td>
+                        <td>2 hours</td>
+                        <td>15 minutes</td>
+                        <td><span class="highlight">87% reduction</span></td>
+                    </tr>
+                </table>
+
+                <div class="two-column" style="margin-top: 20px;">
                     <div class="box">
-                        <h3>Metrics to Track</h3>
+                        <h3>💰 Cost Analysis (100 users)</h3>
                         <ul>
-                            <li>Time saved per task (hours)</li>
-                            <li>Quality improvements</li>
-                            <li>Error rate reduction</li>
-                            <li>Employee satisfaction</li>
-                            <li>Cost savings</li>
-                            <li>Revenue impact</li>
+                            <li>Licenses: $30/user/month = $36K/year</li>
+                            <li>Training: $15K one-time</li>
+                            <li>Implementation: $10K</li>
+                            <li><strong>Total Year 1: $61K</strong></li>
                         </ul>
                     </div>
                     <div class="box">
-                        <h3>Typical Benefits</h3>
+                        <h3>📈 Value Delivered</h3>
                         <ul>
-                            <li><span class="highlight">50-70%</span> faster report creation</li>
-                            <li><span class="highlight">40%</span> reduction in data processing</li>
-                            <li><span class="highlight">30%</span> improvement in accuracy</li>
-                            <li><span class="highlight">25%</span> faster decision-making</li>
-                            <li><span class="highlight">Enhanced</span> employee experience</li>
+                            <li>Time savings: 10 hrs/week/user</li>
+                            <li>Value: $75/hour × 10 × 52 × 100</li>
+                            <li><strong>Annual value: $3.9M</strong></li>
+                            <li><strong>ROI: 6,300%</strong></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 24: Governance Framework -->
+        <!-- Slide 24: AI Governance Framework -->
         <div class="slide">
             <div class="content">
                 <h2>AI Governance Framework</h2>
-                <div class="two-column">
+                
+                <div class="three-column">
                     <div class="box">
-                        <h3>Policy & Standards</h3>
+                        <h3>👥 Governance Committee</h3>
                         <ul>
-                            <li>Establish AI usage policy</li>
-                            <li>Define approved tools and platforms</li>
-                            <li>Set data classification guidelines</li>
-                            <li>Create security protocols</li>
+                            <li><strong>Executive Sponsor:</strong> CIO or CDO</li>
+                            <li><strong>Members:</strong> Legal, HR, Finance, IT Security</li>
+                            <li><strong>Frequency:</strong> Monthly reviews</li>
                         </ul>
                     </div>
                     <div class="box">
-                        <h3>Roles & Responsibilities</h3>
+                        <h3>📜 Policy Framework</h3>
                         <ul>
-                            <li>Assign AI governance lead</li>
-                            <li>Department AI champions</li>
-                            <li>Security and compliance oversight</li>
-                            <li>Training coordinators</li>
+                            <li>Acceptable use policy</li>
+                            <li>Data classification guide</li>
+                            <li>Approval workflows</li>
+                            <li>Incident response plan</li>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <h3>🔍 Monitoring & Audit</h3>
+                        <ul>
+                            <li>Usage analytics</li>
+                            <li>Quarterly audits</li>
+                            <li>Risk assessments</li>
+                            <li>Compliance checks</li>
                         </ul>
                     </div>
                 </div>
-                <div class="box" style="margin-top: 20px;">
-                    <h3>Documentation & Audit Trail</h3>
-                    <ul>
-                        <li>Document all AI tools in use</li>
-                        <li>Maintain prompt libraries</li>
-                        <li>Record validation processes</li>
-                        <li>Regular governance audits</li>
-                    </ul>
+
+                <div class="box" style="margin-top: 25px;">
+                    <h3>🚦 Three-Tier Classification System</h3>
+                    <table style="margin-top: 15px;">
+                        <tr>
+                            <th>Tier</th>
+                            <th>Data Types</th>
+                            <th>AI Usage</th>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: #10b981;">Green</strong></td>
+                            <td>Public info, general business data</td>
+                            <td>✅ Approved for all AI tools</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: #f59e0b;">Yellow</strong></td>
+                            <td>Internal reports, non-sensitive financials</td>
+                            <td>⚠️ Enterprise tools only, no export</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: #ef4444;">Red</strong></td>
+                            <td>PII, confidential financials, IP, legal</td>
+                            <td>🚫 Prohibited or special approval required</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 25: Resources & Learning -->
+        <!-- Slide 25: Advanced Prompting for Executives -->
         <div class="slide">
             <div class="content">
-                <h2>Resources & Learning Paths</h2>
-                <div class="two-column">
-                    <div class="box">
-                        <h3>Official Resources</h3>
-                        <ul>
-                            <li><strong>Microsoft Learn:</strong> AI Skills Challenge</li>
-                            <li><strong>OpenAI:</strong> ChatGPT Documentation</li>
-                            <li><strong>Anthropic:</strong> Claude Guides</li>
-                            <li><strong>Industry Forums:</strong> LinkedIn AI groups</li>
-                        </ul>
-                    </div>
-                    <div class="box">
-                        <h3>Training Programs</h3>
-                        <ul>
-                            <li>Internal AI workshops</li>
-                            <li>Online courses (Coursera, Udemy)</li>
-                            <li>Professional certifications</li>
-                            <li>Vendor-specific training</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="box" style="margin-top: 20px;">
-                    <h3>Communities</h3>
-                    <ul>
-                        <li>Internal AI Centers of Excellence</li>
-                        <li>Professional associations</li>
-                        <li>Industry conferences and webinars</li>
-                        <li>Peer learning networks</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 26: Key Takeaways -->
-        <div class="slide">
-            <div class="content">
-                <h2>Key Takeaways</h2>
+                <h2>Advanced Executive Prompting Techniques</h2>
+                
                 <div class="box">
-                    <h3 style="color: #667eea;">Remember:</h3>
-                    <ul style="font-size: 1.3em; line-height: 2;">
-                        <li>AI <span class="highlight">augments human capabilities</span>, doesn't replace them</li>
-                        <li>Start with <span class="highlight">simple, high-impact</span> use cases</li>
-                        <li><span class="highlight">Always validate</span> AI outputs</li>
-                        <li>Focus on <span class="highlight">time-saving opportunities</span></li>
-                        <li><span class="highlight">Prioritize data security</span> and ethics</li>
-                        <li><span class="highlight">Document everything</span> for governance</li>
-                        <li>Embrace <span class="highlight">continuous learning</span></li>
-                        <li>Share knowledge and <span class="highlight">collaborate</span> across functions</li>
+                    <h3>🎯 Multi-Stakeholder Analysis</h3>
+                    <div class="prompt">"Analyze proposed office closure from 4 perspectives: 1) Financial impact (CFO lens: costs, savings, cash flow), 2) Employee impact (CHRO lens: affected headcount, severance, morale), 3) Operational risk (COO lens: business continuity, customer service), 4) Communication strategy (CCO lens: internal/external messaging). Provide recommendation matrix."</div>
+                </div>
+
+                <div class="box">
+                    <h3>🔄 Scenario Planning</h3>
+                    <div class="prompt">"Model 3 scenarios for next fiscal year: 1) Bull case (market grows 15%, we gain 5 pts share), 2) Base case (market flat, maintain share), 3) Bear case (market contracts 10%, lose 3 pts share). For each: revenue forecast, EBITDA impact, cash flow, strategic actions required, investment priorities. Include trigger points to shift between scenarios."</div>
+                </div>
+
+                <div class="box">
+                    <h3>⚖️ Decision Framework</h3>
+                    <div class="prompt">"We're deciding between: A) Build in-house solution ($2M, 18 months), B) Acquire competitor ($15M, immediate), C) Partner with tech firm (revenue share, 6 months). Evaluate using: Strategic fit (20%), Financial return (30%), Risk profile (20%), Time to market (15%), Organizational capability (15%). Create weighted scoring matrix with recommendation."</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 26: Faculty-Specific Applications -->
+        <div class="slide">
+            <div class="content">
+                <h2>AI for Faculty & Academic Leadership</h2>
+                
+                <div class="two-column">
+                    <div class="box">
+                        <h3>📚 Curriculum Development</h3>
+                        <ul>
+                            <li>Learning objectives (Bloom's Taxonomy)</li>
+                            <li>Course outlines and syllabi</li>
+                            <li>Assignment design with rubrics</li>
+                            <li>Case study creation</li>
+                            <li>Exam question generation</li>
+                            <li>Accreditation documentation</li>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <h3>👨‍🎓 Student Success</h3>
+                        <ul>
+                            <li>Personalized feedback at scale</li>
+                            <li>Study guides and review materials</li>
+                            <li>Differentiated instruction plans</li>
+                            <li>Assignment scaffolding</li>
+                            <li>Office hours preparation</li>
+                            <li>Student performance analysis</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <h3>🔬 Research Support</h3>
+                    <ul>
+                        <li>Literature review synthesis</li>
+                        <li>Research methodology guidance</li>
+                        <li>Data analysis interpretation</li>
+                        <li>Grant proposal drafting</li>
+                        <li>Paper outlining and structuring</li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 27: Closing -->
+        <!-- Slide 27: Faculty Demonstrations -->
+        <div class="slide">
+            <div class="content">
+                <h2>Live Demo: Faculty Use Cases</h2>
+                
+                <div class="demo-box">
+                    <h3>📝 MBA Course Design</h3>
+                    <div class="prompt">"Design Financial Statement Analysis course for MBA students. Create: 1) 6 learning objectives using Bloom's Taxonomy (applying, analyzing, evaluating levels), 2) 12-week course outline with topics, 3) Case study assignment analyzing real company 10-K with grading rubric (40% analysis depth, 30% recommendations, 20% financial modeling, 10% presentation), 4) Team project parameters."</div>
+                </div>
+
+                <div class="demo-box">
+                    <h3>📊 Research Literature Review</h3>
+                    <div class="prompt">"I'm researching impact of AI on accounting profession. Summarize key themes from recent literature (2022-2025): 1) Automation of bookkeeping tasks, 2) Enhanced audit capabilities, 3) Strategic advisory role shift, 4) Skill requirements evolution. Identify research gaps and suggest 3 potential research questions for empirical study."</div>
+                </div>
+
+                <div class="demo-box">
+                    <h3>✍️ Personalized Student Feedback</h3>
+                    <div class="prompt">"Student submitted financial analysis with these issues: calculations correct but missed key trends, no industry benchmarking, weak recommendations. Provide constructive feedback: acknowledge strengths, explain gaps, suggest specific improvements, include resources for learning. Tone: encouraging but direct. 200 words."</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 28: Budget Optimization Case -->
+        <div class="slide">
+            <div class="content">
+                <h2>Case Study: Department Budget Crisis</h2>
+                
+                <div class="box" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(249, 115, 22, 0.1)); border-left-color: #ef4444;">
+                    <h3>📋 Scenario</h3>
+                    <p style="font-size: 1.1em; line-height: 1.7;">Finance department must reduce budget by <span class="highlight">20% ($800K)</span> while maintaining service levels:</p>
+                    <ul>
+                        <li>Current: $4M annual budget (60% personnel, 40% operating)</li>
+                        <li>Constraint: No layoffs, maintain audit readiness</li>
+                        <li>Timeline: Implement within 90 days</li>
+                    </ul>
+                </div>
+
+                <div class="demo-box">
+                    <h3>🤖 AI-Powered Solution Approach</h3>
+                    <div class="prompt">"Analyze $4M finance department budget requiring 20% reduction without layoffs. Break down: 1) Personnel costs by role and function, 2) Operating expenses by category (software, consulting, travel, office), 3) Cost-to-value ratio for each expense category, 4) Automation opportunities, 5) Process efficiency gains. Create 3 scenarios: conservative (15% cut), target (20% cut), aggressive (25% cut). For each scenario provide: specific actions, timeline, risk level, impact on service delivery, one-time costs."</div>
+                </div>
+
+                <div class="two-column" style="margin-top: 20px;">
+                    <div class="box">
+                        <h3>🎯 AI-Identified Solutions</h3>
+                        <ul>
+                            <li>Reduce consulting: $200K (25%)</li>
+                            <li>Software consolidation: $150K (19%)</li>
+                            <li>Automate reporting: $180K (23%)</li>
+                            <li>Travel optimization: $120K (15%)</li>
+                            <li>Process improvements: $150K (18%)</li>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <h3>📈 Outcome</h3>
+                        <ul>
+                            <li><strong>Total savings: $800K</strong></li>
+                            <li>Analysis time: 6 hours vs. 3 weeks</li>
+                            <li>Zero personnel impact</li>
+                            <li>Service levels maintained</li>
+                            <li>Bonus: identified $200K in future savings</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 29: Change Management -->
+        <div class="slide">
+            <div class="content">
+                <h2>AI for Change Management</h2>
+                
+                <div class="demo-box">
+                    <h3>📋 Scenario: New ERP System Implementation</h3>
+                    <div class="prompt">"Create comprehensive change management plan for ERP system replacing 20-year-old legacy system. Affected: 500 employees across Finance, Operations, HR, Procurement. Timeline: 12-month implementation. Include: 1) Stakeholder analysis (resistance level, influence, required actions), 2) Communication plan (audiences, messages, channels, frequency), 3) Training strategy (by role, delivery method, duration), 4) Resistance mitigation tactics, 5) Success metrics, 6) Month-by-month timeline with milestones."</div>
+                </div>
+
+                <div class="demo-box">
+                    <h3>📊 Employee Feedback Analysis</h3>
+                    <div class="prompt">"Analyze 200 employee survey responses about upcoming system change. Identify: 1) Top 5 concerns (frequency and severity), 2) Support levels by department, 3) Common misconceptions to address, 4) Champions to leverage, 5) At-risk groups needing extra support. Create targeted communication addressing each concern with empathy and specific solutions."</div>
+                </div>
+
+                <div class="key-point">
+                    <strong>💡 Executive Insight:</strong> AI excels at synthesizing large amounts of qualitative feedback and identifying patterns human reviewers might miss. Use it to stay ahead of resistance before it crystallizes.
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 30: Data Visualization & Dashboards -->
+        <div class="slide">
+            <div class="content">
+                <h2>AI for Data Visualization Strategy</h2>
+                
+                <div class="demo-box">
+                    <h3>📊 Executive Dashboard Design</h3>
+                    <div class="prompt">"I need executive dashboard for monthly business review. Data includes: Revenue (5 product lines, 3 regions), Profitability (gross margin, EBITDA by segment), Cash (AR/AP aging, cash flow forecast), Operations (efficiency metrics, capacity utilization), People (headcount, turnover, open positions). Recommend: 1) Best visualization type for each metric, 2) Dashboard layout prioritizing most important metrics, 3) Color scheme for executive audience, 4) Interactive elements needed, 5) Mobile vs desktop considerations."</div>
+                </div>
+
+                <div class="two-column">
+                    <div class="box">
+                        <h3>📈 Financial Trends</h3>
+                        <div class="prompt">"Quarterly sales data across 8 regions over 3 years. Suggest visualization showing: trends, seasonality, regional comparison, growth rates. Recommend chart type and explain why."</div>
+                    </div>
+                    <div class="box">
+                        <h3>👥 HR Metrics</h3>
+                        <div class="prompt">"Design HR dashboard: turnover by department, time-to-hire trends, diversity metrics, engagement scores. Layout for CHRO with drill-down capabilities."</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 31: Meeting Productivity -->
+        <div class="slide">
+            <div class="content">
+                <h2>Maximizing Meeting Productivity with AI</h2>
+                
+                <div class="two-column">
+                    <div class="box">
+                        <h3>📅 Pre-Meeting Preparation</h3>
+                        <div class="prompt">"Create agenda for quarterly business review with 12 executives (CFO, COO, CHRO, Regional VPs). Duration: 4 hours. Include: financial review, operational updates, strategic initiatives status, decision items. Allocate time for each section, assign presenters, define decision frameworks needed."</div>
+                    </div>
+                    <div class="box">
+                        <h3>📝 Post-Meeting Action</h3>
+                        <div class="prompt">"Convert these meeting notes into: 1) Executive summary (3 key decisions), 2) Action items table (task, owner, deadline, dependencies), 3) Follow-up questions requiring research, 4) Next meeting agenda topics. Format for email distribution."</div>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <h3>🎯 Meeting Minutes Template</h3>
+                    <div class="prompt">"Create meeting minutes template for executive team meetings including: attendees, key discussion points, decisions made with rationale, action items, parking lot issues, next meeting date. Professional format suitable for board distribution."</div>
+                </div>
+
+                <div class="stat">
+                    <span class="stat-number">85%</span>
+                    Reduction in post-meeting admin time
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 32: Performance Management -->
+        <div class="slide">
+            <div class="content">
+                <h2>AI-Enhanced Performance Management</h2>
+                
+                <div class="demo-box">
+                    <h3>📊 Performance Analysis</h3>
+                    <div class="prompt">"Analyze performance data for Senior Financial Analyst (3 years tenure). Data: consistent exceeds expectations on technical skills, meets on collaboration, mixed feedback on communication, completed 2 certifications, led 3 projects. Identify: strengths to leverage, development opportunities, career trajectory options, skills gaps for promotion to Manager. Create development plan with specific, measurable goals over 6 months."</div>
+                </div>
+
+                <div class="demo-box">
+                    <h3>🎯 SMART Goals Creation</h3>
+                    <div class="prompt">"Create 5 SMART goals for Finance Manager role balancing: 1-2 technical/functional goals (FP&A, systems, compliance), 1-2 leadership goals (team development, cross-functional collaboration), 1 strategic goal (business partnership, innovation). Include success metrics and quarterly milestones."</div>
+                </div>
+
+                <div class="two-column">
+                    <div class="box">
+                        <h3>📝 Feedback Writing</h3>
+                        <div class="prompt">"Write constructive performance feedback for employee who: strong technical work but often misses deadlines, excellent quality but low quantity. Tone: direct but supportive, focus on behaviors not personality. Include specific examples and improvement expectations."</div>
+                    </div>
+                    <div class="box">
+                        <h3>🌟 Recognition Message</h3>
+                        <div class="prompt">"Draft recognition message for employee who led successful month-end close automation project saving 40 hours monthly. Highlight impact, teamwork, innovation. Suitable for all-hands announcement."</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 33: Compliance & Policy -->
+        <div class="slide">
+            <div class="content">
+                <h2>AI for Compliance & Policy Management</h2>
+                
+                <div class="demo-box">
+                    <h3>📜 Policy Creation</h3>
+                    <div class="prompt">"Create data privacy policy for healthcare organization compliant with HIPAA. Cover: data collection, storage, access controls, breach notification, employee responsibilities, vendor management, patient rights. Write in plain language (8th grade reading level) while maintaining legal accuracy. Include definitions section and FAQ."</div>
+                </div>
+
+                <div class="demo-box">
+                    <h3>📋 Regulatory Compliance Summary</h3>
+                    <div class="prompt">"Summarize recent changes to SOX compliance requirements (2024-2025). Identify: what changed, implementation deadlines, impact on internal controls, documentation requirements, estimated effort for compliance. Create action plan with priorities and resource needs."</div>
+                </div>
+
+                <div class="two-column">
+                    <div class="box">
+                        <h3>✅ Compliance Checklist</h3>
+                        <div class="prompt">"Create quarterly compliance checklist for Finance department covering: SOX controls testing, segregation of duties review, access rights audit, vendor due diligence, policy acknowledgments. Include responsible parties and evidence required."</div>
+                    </div>
+                    <div class="box">
+                        <h3>📊 Audit Preparation</h3>
+                        <div class="prompt">"We have external audit in 3 weeks. Create preparation plan: documents to gather, process walkthroughs to schedule, controls to test, open issues to resolve, team assignments. Timeline with daily tasks."</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 34: Crisis Communication -->
+        <div class="slide">
+            <div class="content">
+                <h2>Crisis Communication with AI</h2>
+                
+                <div class="box" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(249, 115, 22, 0.1)); border-left-color: #ef4444;">
+                    <h3>⚠️ Crisis Scenario</h3>
+                    <p style="font-size: 1.1em;">Data breach exposed 50,000 customer records including names, emails, phone numbers. Breach discovered this morning, occurred 2 weeks ago. Regulatory notification required within 72 hours.</p>
+                </div>
+
+                <div class="demo-box">
+                    <h3>📧 Multi-Audience Communication</h3>
+                    <div class="prompt">"Create 4 communications for data breach: 
+
+1) IMMEDIATE (within 1 hour): Internal notification to executive team and legal. Tone: factual, urgent. Include: what we know, what we're doing, roles/responsibilities, communication blackout until approved messages ready.
+
+2) Within 4 hours: All-employee email. Tone: transparent but calm. Cover: incident summary, customer impact, our response, what employees should/shouldn't say, support resources.
+
+3) Within 24 hours: Customer notification email. Tone: apologetic, accountable, reassuring. Include: what happened, what data affected, what we're doing, what customers should do, how we'll prevent recurrence, contact for questions.
+
+4) Within 24 hours: Public statement for media. Tone: professional, responsible. Brief summary suitable for press release."</div>
+                </div>
+
+                <div class="demo-box">
+                    <h3>❓ Crisis FAQ</h3>
+                    <div class="prompt">"Create comprehensive FAQ addressing: How did breach happen? When did you discover it? What data was exposed? Has it been misused? What are you doing to prevent this? Who should I contact? Are you offering credit monitoring? What are my legal rights? Will I be compensated? Provide clear, honest answers."</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 35: Process Improvement -->
+        <div class="slide">
+            <div class="content">
+                <h2>AI for Process Optimization</h2>
+                
+                <div class="demo-box">
+                    <h3>🔍 Process Analysis: Month-End Close</h3>
+                    <div class="prompt">"Analyze month-end financial close process currently taking 10 business days. Process includes: data collection (2 days), reconciliations (3 days), journal entries (2 days), reporting (2 days), review (1 day). Identify: bottlenecks causing delays, manual tasks suitable for automation, dependencies creating wait time, steps that could be done in parallel, quality control gaps. Provide optimized process flow reducing to 5-day close with implementation roadmap."</div>
+                </div>
+
+                <div class="demo-box">
+                    <h3>🤖 Automation Opportunities</h3>
+                    <div class="prompt">"Review expense approval workflow: Employee submits → Manager approves → Finance reviews → VP approves (if >$5K) → Payment processing. Current: 7-10 days average, 30% require back-and-forth, frequent delays. Suggest: automation opportunities, approval rule optimization, exception handling, integration points, expected time reduction, implementation complexity and cost."</div>
+                </div>
+
+                <div class="two-column">
+                    <div class="stat">
+                        <span class="stat-number">40-60%</span>
+                        Time reduction typical for optimized processes
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">80%</span>
+                        Error reduction through automation
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 36: Ethical AI Use -->
+        <div class="slide">
+            <div class="content">
+                <h2>Ethical AI: Executive Responsibility</h2>
+                
+                <div class="two-column">
+                    <div class="box">
+                        <h3>🔍 Transparency Principles</h3>
+                        <ul>
+                            <li><strong>Disclose AI use</strong> in decision-making</li>
+                            <li><strong>Explain logic</strong> behind AI recommendations</li>
+                            <li><strong>Human oversight</strong> required for critical decisions</li>
+                            <li><strong>Document</strong> AI-assisted processes</li>
+                            <li><strong>Allow appeals</strong> of AI-driven decisions</li>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <h3>⚖️ Fairness & Equity</h3>
+                        <ul>
+                            <li><strong>Test for bias</strong> in outputs regularly</li>
+                            <li><strong>Diverse training data</strong> requirements</li>
+                            <li><strong>Impact assessments</strong> for protected groups</li>
+                            <li><strong>Regular audits</strong> of AI decisions</li>
+                            <li><strong>Corrective action</strong> when bias detected</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <h3>⚠️ High-Risk Use Cases Requiring Extra Scrutiny</h3>
+                    <ul>
+                        <li><strong>Hiring decisions:</strong> Resume screening, interview scoring (potential for demographic bias)</li>
+                        <li><strong>Performance evaluation:</strong> Ratings, promotion recommendations (fairness concerns)</li>
+                        <li><strong>Credit/lending:</strong> Approval decisions (regulatory compliance, disparate impact)</li>
+                        <li><strong>Healthcare triage:</strong> Patient prioritization (life-critical, equity issues)</li>
+                        <li><strong>Compensation:</strong> Pay decisions, equity analysis (legal implications)</li>
+                    </ul>
+                </div>
+
+                <div class="key-point">
+                    <strong>👨‍⚖️ Executive Mandate:</strong> Establish ethical AI review board. All high-risk use cases require pre-approval, bias testing, and ongoing monitoring. Ethics isn't optional—it's fundamental to sustainable AI adoption.
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 37: Building AI Capability -->
+        <div class="slide">
+            <div class="content">
+                <h2>Building Organizational AI Capability</h2>
+                
+                <div class="box" style="background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%); color: white; padding: 30px;">
+                    <h3 style="color: white; margin-top: 0; font-size: 1.6em; text-align: center;">Your Role as AI Champion</h3>
+                    <p style="font-size: 1.2em; text-align: center; line-height: 1.8;">As executives and faculty, you don't just USE AI—you <span style="background: rgba(255,255,255,0.3); padding: 4px 10px; border-radius: 6px;">MODEL adoption</span>, <span style="background: rgba(255,255,255,0.3); padding: 4px 10px; border-radius: 6px;">ENABLE teams</span>, and <span style="background: rgba(255,255,255,0.3); padding: 4px 10px; border-radius: 6px;">DRIVE transformation</span>.</p>
+                </div>
+
+                <div class="two-column">
+                    <div class="box">
+                        <h3>🌱 Foster Learning Culture</h3>
+                        <ul>
+                            <li><strong>Encourage experimentation:</strong> "Failure is learning"</li>
+                            <li><strong>Share success stories:</strong> Weekly AI wins</li>
+                            <li><strong>Reward innovation:</strong> Recognize creative AI use</li>
+                            <li><strong>Remove barriers:</strong> Easy access to tools</li>
+                            <li><strong>Lead by example:</strong> Share your AI journey</li>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <h3>🎓 Provide Ongoing Support</h3>
+                        <ul>
+                            <li><strong>Regular training:</strong> Monthly lunch-and-learns</li>
+                            <li><strong>Peer learning:</strong> Internal communities of practice</li>
+                            <li><strong>Quick references:</strong> Prompt libraries, tip sheets</li>
+                            <li><strong>Office hours:</strong> AI champions available for help</li>
+                            <li><strong>Certification paths:</strong> Recognize skill development</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <h3>📊 Measure & Celebrate Progress</h3>
+                    <ul>
+                        <li>Track adoption metrics and share progress</li>
+                        <li>Celebrate teams achieving AI-driven improvements</li>
+                        <li>Showcase ROI stories in leadership meetings</li>
+                        <li>Create "AI Innovator of the Month" recognition</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 38: Resources & Learning Paths -->
+        <div class="slide">
+            <div class="content">
+                <h2>Continuous Learning Resources</h2>
+                
+                <div class="three-column">
+                    <div class="box">
+                        <h3>📚 Official Platforms</h3>
+                        <ul>
+                            <li><strong>Microsoft Learn:</strong> Free AI courses</li>
+                            <li><strong>OpenAI Cookbook:</strong> Practical examples</li>
+                            <li><strong>Anthropic Docs:</strong> Claude guides</li>
+                            <li><strong>Google AI:</strong> Gemini tutorials</li>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <h3>🎓 Professional Development</h3>
+                        <ul>
+                            <li><strong>Coursera:</strong> AI for Business</li>
+                            <li><strong>LinkedIn Learning:</strong> Prompt Engineering</li>
+                            <li><strong>Harvard Online:</strong> AI Strategy</li>
+                            <li><strong>MIT Sloan:</strong> AI Exec Programs</li>
+                        </ul>
+                    </div>
+                    <div class="box">
+                        <h3>🌐 Communities</h3>
+                        <ul>
+                            <li><strong>LinkedIn Groups:</strong> AI Executives</li>
+                            <li><strong>Reddit:</strong> r/ChatGPT, r/ClaudeAI</li>
+                            <li><strong>Industry Forums:</strong> CFO.com, SHRM</li>
+                            <li><strong>Conferences:</strong> AI in Business Summit</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <h3>📖 Recommended Reading</h3>
+                    <div class="two-column">
+                        <ul>
+                            <li>"Co-Intelligence" by Ethan Mollick</li>
+                            <li>"The AI-Powered Enterprise" by Seth Earley</li>
+                            <li>"Prediction Machines" by Agrawal, Gans, Goldfarb</li>
+                        </ul>
+                        <ul>
+                            <li>"AI Superpowers" by Kai-Fu Lee</li>
+                            <li>"The Alignment Problem" by Brian Christian</li>
+                            <li>Harvard Business Review: AI Strategy series</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="key-point">
+                    <strong>💡 Commitment:</strong> Dedicate 2-3 hours per week to AI learning. Technology evolves rapidly—continuous learning is non-negotiable for leadership.
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 39: Executive Key Takeaways -->
+        <div class="slide">
+            <div class="content">
+                <h2>Executive Leadership: Key Takeaways</h2>
+                
+                <div class="box" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(5, 150, 105, 0.15)); border-left-color: #10b981; padding: 30px;">
+                    <h3 style="font-size: 1.5em; margin-bottom: 25px;">🎯 7 Principles for AI Leadership</h3>
+                    <ul style="font-size: 1.15em; line-height: 2;">
+                        <li><strong>1. AI augments expertise</strong> — It's a power tool for experts, not a replacement for judgment</li>
+                        <li><strong>2. Start strategically</strong> — High-impact, low-risk use cases first. Quick wins build momentum</li>
+                        <li><strong>3. Always validate</strong> — Trust but verify. AI assists, humans decide. No exceptions</li>
+                        <li><strong>4. Lead by example</strong> — Your team watches you. Model responsible, effective AI use</li>
+                        <li><strong>5. Prioritize ethics</strong> — Fairness, transparency, accountability aren't optional. Build them in</li>
+                        <li><strong>6. Build systematically</strong> — Governance, training, measurement. Capability doesn't happen by accident</li>
+                        <li><strong>7. Learn continuously</strong> — AI evolves weekly. Commit to ongoing learning and adaptation</li>
+                    </ul>
+                </div>
+
+                <div class="stat" style="margin-top: 25px;">
+                    <span class="stat-number">3-5 years</span>
+                    Estimated timeframe for AI to fundamentally reshape work
+                </div>
+
+                <div class="quote" style="margin-top: 20px; font-size: 1.2em;">
+                    "The question isn't whether AI will transform your organization. The question is whether you'll lead that transformation or be disrupted by it."
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 40: Closing -->
         <div class="slide title-slide">
             <div class="content">
-                <div class="icon">🎯</div>
-                <h1>Thank You!</h1>
-                <p class="subtitle" style="margin-top: 40px; font-size: 1.5em;">Ready to Transform Your Work?</p>
-                <div style="margin-top: 60px; font-size: 1.3em;">
-                    <p>Start small, think big</p>
-                    <p style="margin-top: 20px;">Experiment with confidence</p>
-                    <p style="margin-top: 20px;">Measure and iterate</p>
-                    <p style="margin-top: 20px;">Share your learnings</p>
-                    <p style="margin-top: 40px; font-size: 1.5em;"><strong>Questions?</strong></p>
+                <div class="icon">🚀</div>
+                <h1>Your AI Journey Starts Now</h1>
+                <p class="subtitle" style="margin-top: 40px; font-size: 1.4em;">From Learning to Leading</p>
+                
+                <div style="margin-top: 60px; font-size: 1.2em; line-height: 2;">
+                    <p><strong>✓ Today:</strong> You learned the fundamentals</p>
+                    <p style="margin-top: 20px;"><strong>✓ This Week:</strong> Try 3 use cases from your role</p>
+                    <p style="margin-top: 20px;"><strong>✓ This Month:</strong> Build your prompt library</p>
+                    <p style="margin-top: 20px;"><strong>✓ This Quarter:</strong> Drive measurable business impact</p>
+                    <p style="margin-top: 20px;"><strong>✓ This Year:</strong> Transform your function with AI</p>
+                </div>
+
+                <div style="margin-top: 70px; padding: 30px; background: rgba(255,255,255,0.2); border-radius: 15px;">
+                    <p style="font-size: 1.5em; margin-bottom: 20px;"><strong>Remember:</strong></p>
+                    <p style="font-size: 1.2em;">Start small. Think big. Move fast. Lead boldly.</p>
+                </div>
+
+                <div style="margin-top: 60px;">
+                    <p style="font-size: 1.6em; font-weight: 700;">Questions? Let's Discuss!</p>
                 </div>
             </div>
         </div>
@@ -1009,23 +1692,18 @@
         document.getElementById('total-slides').textContent = totalSlides;
         
         function showSlide(n) {
-            if (n > totalSlides) {
-                currentSlide = totalSlides;
-            }
-            if (n < 1) {
-                currentSlide = 1;
-            }
+            if (n > totalSlides) currentSlide = totalSlides;
+            if (n < 1) currentSlide = 1;
             
             slides.forEach(slide => slide.classList.remove('active'));
             slides[currentSlide - 1].classList.add('active');
             
             document.getElementById('current-slide').textContent = currentSlide;
-            
             document.getElementById('prevBtn').disabled = currentSlide === 1;
             document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
             
             if (currentSlide === totalSlides) {
-                document.getElementById('nextBtn').textContent = '✓ Finish';
+                document.getElementById('nextBtn').textContent = '✓ Complete';
             } else {
                 document.getElementById('nextBtn').textContent = 'Next →';
             }
@@ -1034,15 +1712,56 @@
         function changeSlide(n) {
             currentSlide += n;
             showSlide(currentSlide);
+            
+            // Scroll to top of content area when changing slides
+            const activeSlide = document.querySelector('.slide.active .content');
+            if (activeSlide) {
+                activeSlide.scrollTop = 0;
+            }
         }
         
+        // Keyboard navigation
         document.addEventListener('keydown', function(event) {
-            if (event.key === 'ArrowRight') {
-                changeSlide(1);
+            if (event.key === 'ArrowRight' || event.key === ' ') {
+                event.preventDefault();
+                if (currentSlide < totalSlides) changeSlide(1);
             } else if (event.key === 'ArrowLeft') {
-                changeSlide(-1);
+                event.preventDefault();
+                if (currentSlide > 1) changeSlide(-1);
+            } else if (event.key === 'Home') {
+                event.preventDefault();
+                currentSlide = 1;
+                showSlide(currentSlide);
+            } else if (event.key === 'End') {
+                event.preventDefault();
+                currentSlide = totalSlides;
+                showSlide(currentSlide);
             }
         });
+        
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        document.addEventListener('touchstart', function(event) {
+            touchStartX = event.changedTouches[0].screenX;
+        });
+        
+        document.addEventListener('touchend', function(event) {
+            touchEndX = event.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                // Swipe left - next slide
+                if (currentSlide < totalSlides) changeSlide(1);
+            }
+            if (touchEndX > touchStartX + 50) {
+                // Swipe right - previous slide
+                if (currentSlide > 1) changeSlide(-1);
+            }
+        }
         
         showSlide(currentSlide);
     </script>
